@@ -1,33 +1,13 @@
-<html>
-	<head>
-		<title>Carbono lml</title>
-	</head>
+{% extends 'blog/base.html' %}
 
-	<body>
-		<div>
-		<h1>Welcome to Carbono's Rock Experience</h1>
-		<h2>Here you will find the band's best moments</h2>
-		</div>
-		<div>
-		<h3>What do you wanna see now?</h3>
-		{% for post in posts %}
-			<div>
+{% block content %}
+	{% for post in posts %}
+		<div class="post">
+			<div class="date">
 				<p>published: {{ post.published_date }}</p>
-				<h2><a href="">{{ post.title }}</a></h2>
-				<p>{{ post.text|linebreaksbr }}</p>
 			</div>
-		{% endfor %}
-		<ul>
-			<li><a href= ""> Who are us?</a></li>
-			<li><a href= "">Members</a></li>
-			<li><a href= "">Songs</a></li>
-			<li><a href= "">Lyrics</a></li>
-			<li><a href= "">Photos</a></li>
-			<li><a href= "">Videos</a></li>
-			<li><a href= "">Our next concerts</a></li>
-			<li><a href= "">Contact Us</a></li>
-		</ul>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
-	</body>
-	
-</html>
+	{% endfor %}
+{% endblock %}
